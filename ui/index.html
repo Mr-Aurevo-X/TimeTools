@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- © 2026 Mr-Aurevo-X · TimeTools · 100% local · free · updates not guaranteed -->
+  <meta name="author" content="Mr-Aurevo-X" />
+  <meta name="copyright" content="Copyright © 2026 Mr-Aurevo-X. All rights reserved." />
+  <title>TimeTools — Mr-Aurevo-X</title>
+  <link rel="stylesheet" href="vendor/pc-command-kit/tokens/kit.css" />
+  <link rel="stylesheet" href="vendor/pc-command-kit/components/embed.css" />
+  <link rel="stylesheet" href="fonts/fonts.css" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="shell.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="hub-chrome.css" />
+  <script>
+    (function () {
+      try {
+        if (/(?:^|[?&])embed=1(?:&|$)/.test(location.search || "")) {
+          document.documentElement.classList.add("pcd-embed");
+          document.addEventListener("DOMContentLoaded", function () {
+            if (document.body) document.body.classList.add("pcd-embed");
+          });
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body data-tool-title="TimeTools">
+  <header class="pcd-nav" id="hubTitlebar">
+    <div class="brand pywebview-drag-region" title="Mr-Aurevo-X" id="hubBrand">
+      <span class="mark" aria-hidden="true">MX</span>
+      <strong class="brand-title">
+        <span class="brand-atelier">Mr-Aurevo-X</span>
+      </strong>
+      <span class="hub-tool-name">TimeTools</span>
+    </div>
+    <div class="nav-spacer pywebview-drag-region" aria-hidden="true"></div>
+    <div class="nav-right">
+      <div class="win-controls" role="group" aria-label="Fenêtre">
+        <button type="button" class="win-btn" id="winMin" title="Réduire" aria-label="Réduire">─</button>
+        <button type="button" class="win-btn" id="winMax" title="Agrandir" aria-label="Agrandir">□</button>
+        <button type="button" class="win-btn win-close" id="winClose" title="Fermer" aria-label="Fermer">×</button>
+      </div>
+    </div>
+  </header>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <svg class="brand-mark" width="40" height="40" viewBox="0 0 64 64" role="img" aria-label="TimeTools" xmlns="http://www.w3.org/2000/svg">
+          <rect width="64" height="64" rx="14" fill="#0b0b0d"/>
+          <circle cx="32" cy="34" r="18" fill="none" stroke="#5c7cfa" stroke-width="4"/>
+          <path d="M32 22 v12 l8 5" fill="none" stroke="#eef2f8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="32" cy="34" r="2.5" fill="#5c7cfa"/>
+          <rect x="28" y="10" width="8" height="4" rx="1.5" fill="#eef2f8"/>
+        </svg>
+        <div class="brand-text">
+          <h1>TimeTools</h1>
+          <p data-i18n="tagline">Horodatage · chrono · minuteries · Pomodoro</p>
+        </div>
+      </div>
+      <div class="badge-row">
+        <span class="badge">LOCAL</span>
+        <span class="badge free" data-i18n="badgeFree">100 % gratuit</span>
+      </div>
+      <div class="feature-desc" id="featureDesc">
+        <strong data-i18n="featuresTitle">Fonctions</strong>
+        <span data-i18n="features">Unix ↔ date, chrono + tours, 1–3 minuteries, Pomodoro 25/5. 100 % local.</span>
+      </div>
+      <label class="sound-toggle">
+        <input type="checkbox" id="soundToggle" checked />
+        <span data-i18n="soundLabel">Son système (alarmes)</span>
+      </label>
+      <ul class="legal-strip" id="legalStrip">
+        <li data-i18n="legalFree">100 % gratuit</li>
+        <li data-i18n="legalLocal">100 % local — aucun cloud, aucune télémétrie</li>
+        <li data-i18n="legalUpdates">Mise à jour non garantie — vérif. optionnelle GitHub</li>
+      </ul>
+      <p class="privacy-note" id="privacyNote"
+        data-privacy-fr="Mr-Aurevo-X ne collecte aucune donnée. Outils temps 100 % locaux. Seul appel réseau optionnel : vérif. de mise à jour GitHub."
+        data-privacy-en="Mr-Aurevo-X does not collect your data. 100% local time tools. Only optional network call: GitHub update check.">
+        Mr-Aurevo-X ne collecte aucune donnée. Outils temps 100 % locaux. Seul appel réseau optionnel : vérif. de mise à jour GitHub.
+      </p>
+      <p class="copyright" data-i18n="copyright">Copyright © 2026 Mr-Aurevo-X — tous droits réservés</p>
+      <button type="button" class="btn about-btn" id="btnAbout" data-i18n="btnAbout">À propos</button>
+    </aside>
+
+    <div class="main">
+      <header class="page-header">
+        <h2 data-i18n="title">TimeTools</h2>
+        <p id="meta" data-i18n="subtitle">Horodatage · chrono · minuteries · Pomodoro</p>
+      </header>
+
+      <div class="update-banner" id="updateBanner" hidden role="status" aria-live="polite">
+        <div class="update-banner-text">
+          <strong id="updateTitle" data-i18n="updateTitle">Nouvelle version disponible</strong>
+          <span id="updateDetail"></span>
+        </div>
+        <div class="update-banner-actions">
+          <button type="button" class="btn accent" id="btnUpdateNow" data-i18n="btnUpdate">Mettre à jour</button>
+          <button type="button" class="btn ghost" id="btnUpdateLater" data-i18n="btnLater">Plus tard</button>
+        </div>
+      </div>
+
+      <div class="mode-tabs" id="modeTabs" role="tablist">
+        <button type="button" class="mode-tab active" data-tab="horodatage" data-i18n="tabHorodatage">Horodatage</button>
+        <button type="button" class="mode-tab" data-tab="stopwatch" data-i18n="tabStopwatch">Chronomètre</button>
+        <button type="button" class="mode-tab" data-tab="timers" data-i18n="tabTimers">Minuteries</button>
+        <button type="button" class="mode-tab" data-tab="pomodoro" data-i18n="tabPomodoro">Pomodoro</button>
+      </div>
+
+      <!-- Horodatage (EpochClock) -->
+      <section class="tab-panel" id="panel-horodatage">
+        <div class="live-strip">
+          <div class="live-item">
+            <span class="live-label" data-i18n="nowUnix">Unix maintenant</span>
+            <span class="live-val" id="liveUnix">—</span>
+          </div>
+          <div class="live-item">
+            <span class="live-label" data-i18n="nowLocal">Heure locale</span>
+            <span class="live-val" id="liveLocal">—</span>
+          </div>
+          <div class="live-item">
+            <span class="live-label" data-i18n="tz">Fuseau</span>
+            <span class="live-val" id="liveTz">—</span>
+          </div>
+        </div>
+
+        <div class="panel input-panel">
+          <div class="input-row">
+            <label class="field grow">
+              <span data-i18n="inputLabel">Timestamp Unix ou date ISO</span>
+              <input id="tsInput" type="text" autocomplete="off" spellcheck="false" placeholder="1700000000 · 1700000000000 · 2026-08-04T14:00" />
+            </label>
+            <label class="field">
+              <span data-i18n="unitLabel">Unité</span>
+              <select id="unitSel">
+                <option value="auto" data-i18n="unitAuto">Auto</option>
+                <option value="s">s</option>
+                <option value="ms">ms</option>
+              </select>
+            </label>
+          </div>
+          <div class="input-row">
+            <label class="field grow">
+              <span data-i18n="pickLabel">Choisir date/heure (local)</span>
+              <input id="pick" type="datetime-local" step="1" />
+            </label>
+            <button type="button" class="btn accent now-btn" id="btnNow" data-i18n="btnNow">Maintenant</button>
+          </div>
+          <p class="parse-note" id="parseNote"></p>
+        </div>
+
+        <div class="panel results-panel">
+          <div class="result-grid" id="resultGrid"></div>
+        </div>
+      </section>
+
+      <!-- Chronomètre -->
+      <section class="tab-panel" id="panel-stopwatch" hidden>
+        <div class="panel timer-panel">
+          <div class="big-time" id="swDisplay">00:00.00</div>
+          <div class="toolbar center">
+            <button type="button" class="btn accent" id="swStart" data-i18n="btnStart">Démarrer</button>
+            <button type="button" class="btn" id="swLap" data-i18n="btnLap">Tour</button>
+            <button type="button" class="btn" id="swReset" data-i18n="btnReset">Réinitialiser</button>
+          </div>
+          <ol class="lap-list" id="lapList"></ol>
+        </div>
+      </section>
+
+      <!-- Minuteries -->
+      <section class="tab-panel" id="panel-timers" hidden>
+        <div class="timers-grid" id="timersGrid"></div>
+      </section>
+
+      <!-- Pomodoro -->
+      <section class="tab-panel" id="panel-pomodoro" hidden>
+        <div class="panel timer-panel">
+          <div class="pomo-phase" id="pomoPhase" data-i18n="pomoWork">Travail</div>
+          <div class="big-time" id="pomoDisplay">25:00</div>
+          <div class="pomo-meta" id="pomoMeta"></div>
+          <div class="toolbar center">
+            <button type="button" class="btn accent" id="pomoStart" data-i18n="btnStart">Démarrer</button>
+            <button type="button" class="btn" id="pomoReset" data-i18n="btnReset">Réinitialiser</button>
+            <button type="button" class="btn" id="pomoSkip" data-i18n="btnSkip">Passer</button>
+          </div>
+          <div class="pomo-config">
+            <label class="field">
+              <span data-i18n="pomoWorkMin">Travail (min)</span>
+              <input id="pomoWorkMin" type="number" min="1" max="120" value="25" />
+            </label>
+            <label class="field">
+              <span data-i18n="pomoBreakMin">Pause (min)</span>
+              <input id="pomoBreakMin" type="number" min="1" max="60" value="5" />
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <p class="status" id="status"></p>
+    </div>
+  </div>
+
+  <dialog class="about-dialog" id="aboutDialog">
+    <form method="dialog" class="about-card">
+      <h3 data-i18n="aboutTitle">À propos — TimeTools</h3>
+      <p data-i18n="aboutBody">Suite temps Mr-Aurevo-X : horodatage Unix, chronomètre, minuteries et Pomodoro. 100 % gratuit, 100 % local. Son système optionnel. Mise à jour non garantie.</p>
+      <ul>
+        <li data-i18n="legalFree">100 % gratuit</li>
+        <li data-i18n="legalLocal">100 % local — aucun cloud, aucune télémétrie</li>
+        <li data-i18n="legalUpdates">Mise à jour non garantie — vérif. optionnelle GitHub</li>
+      </ul>
+      <p class="copyright" data-i18n="copyright">Copyright © 2026 Mr-Aurevo-X — tous droits réservés</p>
+      <p class="about-note" data-i18n="aboutRights">Redistribution, reverse engineering ou suppression du copyright interdits sans accord écrit.</p>
+      <button type="submit" class="btn accent" data-i18n="btnClose">Fermer</button>
+    </form>
+  </dialog>
+
+  <script src="hub-chrome.js"></script>
+  <script src="suite-boot.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
