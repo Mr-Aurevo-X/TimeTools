@@ -14,7 +14,7 @@ Fusion de **EpochClock** + **StopwatchPlus** en une seule app vitrine.
 
 ## Capture d'écran / Screenshot
 
-Void Glow UI (kit pc-command) — chrome outil, sans Accueil hub.
+Filament Void Glow — title bar minimale (tb-min) + glow only, sans Accueil hub.
 
 ![ TimeTools Void Glow ](docs/screenshots/ui-void-glow.png)
 
