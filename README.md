@@ -38,6 +38,7 @@ Windows may flag the app as potentially unsafe: binaries are not Authenticode-si
 
 - Horloge live (Unix + heure locale + fuseau) sur l'onglet Horodatage
 - **100 % local** — aucune conversion en ligne, aucune télémétrie
+- Seul appel réseau optionnel : vérif. de version GitHub Releases (désactivable dans **À propos**). Mises à jour non garanties.
 - Son système optionnel pour minuteries et Pomodoro
 
 ## Legal / Légal
