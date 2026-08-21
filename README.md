@@ -14,9 +14,7 @@ Fusion de **EpochClock** + **StopwatchPlus** en une seule app vitrine.
 
 ## Capture d'écran / Screenshot
 
-Filament Void Glow — title bar minimale (tb-min) + glow only, sans Accueil hub.
-
-![ TimeTools Void Glow ](docs/screenshots/ui-void-glow.png)
+![TimeTools](docs/screenshots/ui.png)
 
 ## Download / Téléchargement
 
