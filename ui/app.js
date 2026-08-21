@@ -27,17 +27,18 @@
       subtitle: "Horodatage · chrono · minuteries · Pomodoro",
       featuresTitle: "Fonctions",
       features:
-        "Unix s/ms ↔ date, chrono + tours, 1–3 minuteries/alarmes (son optionnel), Pomodoro 25/5. 100 % local.",
-      privacy:
-        "Mr-Aurevo-X ne collecte aucune donnée. 100 % local. Seul appel réseau optionnel : vérif. de version GitHub Releases (désactivable dans À propos).",
-      badgeFree: "100 % gratuit",
+        "Unix s/ms ↔ date, chrono + tours, 1–3 minuteries/alarmes (son optionnel), Pomodoro 25/5. 100% local.",
+      privacy: "Détail légal, chemins locaux et options réseau : À propos.",
+      badgeFree: "100% gratuit",
       soundLabel: "Son système (alarmes)",
-      legalFree: "100 % gratuit",
-      legalLocal: "100 % local — aucun cloud, aucune télémétrie",
-      legalUpdates: "100 % local sauf vérif. optionnelle GitHub Releases (désactivable)",
+      legalFree: "100% gratuit",
+      legalLocal:
+        "100% sans télémétrie — seule connexion : vérif. versions",
+      legalUpdates:
+        "100% sans télémétrie — seule connexion : vérif. versions",
       aboutTitle: "À propos — TimeTools",
       aboutBody:
-        "Suite temps Mr-Aurevo-X : horodatage Unix, chronomètre, minuteries et Pomodoro. 100 % gratuit, 100 % local. Son système optionnel. Mise à jour non garantie.",
+        "Suite temps Mr-Aurevo-X : horodatage Unix, chronomètre, minuteries et Pomodoro. 100% gratuit, 100% local. Son système optionnel. Mise à jour non garantie.",
       aboutRights:
         "Redistribution, reverse engineering ou suppression du copyright interdits sans accord écrit.",
       btnAbout: "À propos",
@@ -46,9 +47,10 @@
       aboutCopied: "Lien copié.",
 
       langSwitchAria: "Langue",
+      supportNote: "Si le boulot te plaît, un café — sinon profite.",
       aboutToggle: "Vérifier les nouvelles versions sur GitHub",
       aboutHintOn: "Quand activé : un appel API GitHub au démarrage (lecture seule, pas de téléchargement).",
-      aboutHintOff: "Désactivé : aucune requête GitHub. 100 % local hors actions utilisateur.",
+      aboutHintOff: "Désactivé : aucune requête GitHub. 100% local hors actions utilisateur.",
       aboutVersion: "Version {ver}",
       aboutLegalTerms: "CGU",
       aboutLegalPrivacy: "Confidentialité",
@@ -61,7 +63,7 @@
       btnCopyPath: "Copier",
       btnDisableUpdateCheck: "Désactiver la vérif. GitHub",
       btnEnableUpdateCheck: "Réactiver la vérif. GitHub",
-      aboutNetNote: "100 % local — seule connexion hors machine optionnelle : vérif. de version GitHub Releases.",
+      aboutNetNote: "100% local — seule connexion hors machine optionnelle : vérif. de version GitHub Releases.",
       btnClose: "Fermer",
       updateTitle: "Nouvelle version disponible",
       updateDetail: "v{local} → v{remote}",
@@ -82,6 +84,7 @@
       unitLabel: "Unité",
       unitAuto: "Auto",
       pickLabel: "Choisir date/heure (local)",
+      pickPlaceholder: "jj/mm/aaaa hh:mm:ss",
       btnNow: "Maintenant",
       copied: "Copié",
       copyFail: "Copie impossible",
@@ -89,6 +92,7 @@
       detectedS: "Interprété comme secondes",
       detectedMs: "Interprété comme millisecondes",
       detectedIso: "Date ISO reconnue",
+      detectedPick: "Date/heure locale",
       rUnixS: "Unix (secondes)",
       rUnixMs: "Unix (millisecondes)",
       rIsoUtc: "ISO 8601 (UTC)",
@@ -123,13 +127,14 @@
       featuresTitle: "Features",
       features:
         "Unix s/ms ↔ date, stopwatch + laps, 1–3 timers/alarms (optional sound), Pomodoro 25/5. 100% local.",
-      privacy:
-        "Mr-Aurevo-X does not collect your data. 100% local. Only optional network call: GitHub Releases version check (disable in About).",
+      privacy: "Legal details, local paths and network options: About.",
       badgeFree: "100% free",
       soundLabel: "System sound (alarms)",
       legalFree: "100% free",
-      legalLocal: "100% local — no cloud, no telemetry",
-      legalUpdates: "100% local except optional GitHub Releases check (can disable)",
+      legalLocal:
+        "100% no telemetry — only network: version check",
+      legalUpdates:
+        "100% no telemetry — only network: version check",
       aboutTitle: "About — TimeTools",
       aboutBody:
         "Mr-Aurevo-X time suite: Unix timestamps, stopwatch, timers and Pomodoro. 100% free, 100% local. Optional system sound. Updates not guaranteed.",
@@ -141,6 +146,7 @@
       aboutCopied: "Link copied.",
 
       langSwitchAria: "Language",
+      supportNote: "If you like the work, a coffee — otherwise enjoy.",
       aboutToggle: "Check for new versions on GitHub",
       aboutHintOn: "When on: one GitHub API call at startup (read-only, no download).",
       aboutHintOff: "Off: no GitHub requests. 100% local except user actions.",
@@ -177,6 +183,7 @@
       unitLabel: "Unit",
       unitAuto: "Auto",
       pickLabel: "Pick date/time (local)",
+      pickPlaceholder: "mm/dd/yyyy hh:mm:ss",
       btnNow: "Now",
       copied: "Copied",
       copyFail: "Copy failed",
@@ -184,6 +191,7 @@
       detectedS: "Interpreted as seconds",
       detectedMs: "Interpreted as milliseconds",
       detectedIso: "ISO date recognized",
+      detectedPick: "Local date/time",
       rUnixS: "Unix (seconds)",
       rUnixMs: "Unix (milliseconds)",
       rIsoUtc: "ISO 8601 (UTC)",
@@ -216,7 +224,16 @@
   const t = (key) => (SUITE_I18N[suiteLang] && SUITE_I18N[suiteLang][key]) || SUITE_I18N.fr[key] || key;
 
   const $ = (id) => document.getElementById(id);
-  const setStatus = (msg) => { $("status").textContent = msg || ""; };
+  const setStatus = (msg) => {
+    const node = $("status");
+    if (!node) return;
+    const text = msg || "";
+    node.textContent = text;
+    const readyFr = SUITE_I18N.fr.ready;
+    const readyEn = SUITE_I18N.en.ready;
+    const isReady = !!text && (text === t("ready") || text === readyFr || text === readyEn);
+    node.classList.toggle("is-ready", isReady);
+  };
 
   function apiReady() {
     return new Promise((resolve) => {
@@ -345,6 +362,54 @@
     ["rWeekday", (d) => weekInfo(d)],
   ];
 
+  function formatPick(d) {
+    if (!d || isNaN(d.getTime())) return "";
+    const date = suiteLang === "en"
+      ? `${pad(d.getMonth() + 1)}/${pad(d.getDate())}/${d.getFullYear()}`
+      : `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
+    return `${date} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+
+  function parsePickValue(raw) {
+    const s = String(raw || "").trim();
+    if (!s) return null;
+    if (/^\d{4}-\d{2}-\d{2}/.test(s)) {
+      const normalized = s.includes("T") ? s : s.replace(" ", "T");
+      const iso = Date.parse(normalized);
+      if (!isNaN(iso)) return new Date(iso);
+    }
+
+    const m = s.match(
+      /^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})(?:[ T](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?$/
+    );
+    if (!m) return null;
+    const a = parseInt(m[1], 10);
+    const b = parseInt(m[2], 10);
+    const year = parseInt(m[3], 10);
+    const hh = m[4] != null ? parseInt(m[4], 10) : 0;
+    const mm = m[5] != null ? parseInt(m[5], 10) : 0;
+    const ss = m[6] != null ? parseInt(m[6], 10) : 0;
+    let month;
+    let day;
+    if (suiteLang === "en") {
+      month = a;
+      day = b;
+    } else {
+      day = a;
+      month = b;
+    }
+    if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+    const d = new Date(year, month - 1, day, hh, mm, ss);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function syncPickFromDate(d, force) {
+    if (!epochEl.pick) return;
+    if (!force && document.activeElement === epochEl.pick) return;
+    epochEl.pick.value = formatPick(d);
+    epochEl.pick.placeholder = t("pickPlaceholder");
+  }
+
   function renderEpoch() {
     const parsed = parseInput();
     epochEl.resultGrid.innerHTML = "";
@@ -354,6 +419,7 @@
     }
     epochEl.parseNote.textContent = parsed.note || "";
     const d = parsed.date;
+    syncPickFromDate(d, false);
     ROWS.forEach(([key, fn]) => {
       let value;
       try { value = fn(d); } catch (_) { value = "—"; }
@@ -381,17 +447,16 @@
     epochEl.tsInput.value = String(Math.round(Date.now() / 1000));
     epochEl.unitSel.value = "s";
     renderEpoch();
+    syncPickFromDate(new Date(), true);
   }
 
   function onPick() {
-    const v = epochEl.pick.value;
-    if (!v) return;
-    const d = new Date(v);
-    if (!isNaN(d.getTime())) {
-      epochEl.tsInput.value = String(Math.round(d.getTime() / 1000));
-      epochEl.unitSel.value = "s";
-      renderEpoch();
-    }
+    const d = parsePickValue(epochEl.pick.value);
+    if (!d) return;
+    epochEl.tsInput.value = String(Math.round(d.getTime() / 1000));
+    epochEl.unitSel.value = "s";
+    renderEpoch();
+    epochEl.parseNote.textContent = t("detectedPick");
   }
 
   async function copyText(text) {
@@ -754,12 +819,34 @@
     try { if (typeof state !== "undefined" && state) state.lang = next; } catch (_) {}
     document.documentElement.lang = next;
     syncLangSwitch(next);
-    if (typeof applyI18n === "function") applyI18n();
-    else if (window.suite && typeof window.suite.applyI18n === "function" && typeof SUITE_I18N !== "undefined") {
-      window.suite.applyI18n(next, SUITE_I18N);
+    const suiteApi = window.MrAurevoXSuite || window.suite;
+    if (suiteApi && typeof suiteApi.applyI18n === "function" && typeof SUITE_I18N !== "undefined") {
+      suiteApi.applyI18n(next, SUITE_I18N);
     }
     if (typeof refreshLabels === "function") refreshLabels();
     if (typeof applyLabels === "function") applyLabels();
+    if (typeof refreshChromeLabels === "function") refreshChromeLabels();
+    try {
+      if (typeof renderTimers === "function") renderTimers();
+      if (typeof pomoRender === "function") pomoRender();
+      if (typeof tickLive === "function") tickLive();
+      if (typeof renderEpoch === "function") renderEpoch();
+      if (epochEl && epochEl.pick) {
+        epochEl.pick.placeholder = t("pickPlaceholder");
+        const fromPick = parsePickValue(epochEl.pick.value);
+        const fromTs = parseInput();
+        const d = fromPick || (fromTs && fromTs.date);
+        if (d && !isNaN(d.getTime())) syncPickFromDate(d, true);
+      }
+      const cur = $("status") ? String($("status").textContent || "").trim() : "";
+      const idle =
+        !cur ||
+        cur === SUITE_I18N.fr.ready ||
+        cur === SUITE_I18N.en.ready ||
+        cur === "Prêt" ||
+        cur === "Ready";
+      if (idle) setStatus(t("ready"));
+    } catch (_) {}
     try {
       const api = typeof apiReady === "function" ? await apiReady() : (window.pywebview && window.pywebview.api);
       await refreshUpdateCheckButton(api);
@@ -971,6 +1058,9 @@
   epochEl.tsInput.addEventListener("input", renderEpoch);
   epochEl.unitSel.addEventListener("change", renderEpoch);
   epochEl.pick.addEventListener("change", onPick);
+  epochEl.pick.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") { e.preventDefault(); onPick(); }
+  });
   epochEl.btnNow.addEventListener("click", setNow);
   $("swStart").addEventListener("click", swToggle);
   $("swLap").addEventListener("click", swLap);
@@ -1019,6 +1109,7 @@
     swReset();
     renderTimers();
     pomoRender();
+    setStatus(t("ready"));
     setTimeout(() => runUpdateCheck(api), 900);
   })();
 })();
