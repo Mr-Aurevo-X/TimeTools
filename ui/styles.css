@@ -22,7 +22,7 @@
   display: grid; gap: 6px; font-size: 0.72rem; color: var(--muted); line-height: 1.35;
 }
 .legal-strip li { padding-left: 10px; border-left: 2px solid var(--accent-dim); }
-.about-btn { margin-top: auto; width: 100%; }
+.about-btn { margin-top: 0.45rem; width: 100%; }
 .sound-toggle {
   display: flex; align-items: center; gap: 8px;
   margin: 6px 8px; font-size: 0.78rem; color: var(--text);
