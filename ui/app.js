@@ -760,7 +760,7 @@
     try {
       const api = window.pywebview && window.pywebview.api;
       await refreshUpdateCheckButton(api);
-    await fillAboutRepo(api);
+      await fillAboutRepo(api);
     } catch (_) {}
     const d = $("aboutDialog"); if (d && d.showModal) d.showModal();
   });
