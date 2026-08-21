@@ -165,6 +165,9 @@ class Api(WindowChromeMixin):
     def get_update_prefs(self) -> dict:
         return app_updater.get_update_prefs()
 
+    def get_about_local_paths(self) -> dict:
+        return app_updater.about_local_paths()
+
     def beep(self, kind: str = "alarm") -> dict:
         """Optional local system sound (Windows). No-op if unavailable."""
         try:
