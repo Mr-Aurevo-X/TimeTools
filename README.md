@@ -9,7 +9,7 @@
 Suite temps unifiée : horodatage Unix, chronomètre, minuteries et Pomodoro — 100 % local, 100 % gratuit.  
 Unified time suite: Unix timestamps, stopwatch, timers and Pomodoro — 100% local, 100% free.
 
-Fusion de **EpochClock** + **StopwatchPlus** en une seule app vitrine.
+Fusion de **EpochClock** + **StopwatchPlus** en une seule app Windows.
 
 
 ## Capture d'écran / Screenshot
@@ -60,7 +60,7 @@ Licence : **proprietary / all rights reserved** (voir `LICENSE`).
 | `Lancer.cmd` | exe si présent, sinon fallback `pythonw` détaché |
 
 ```powershell
-cd "C:\Users\aurel\Documents\Dev Central Tree\Git Vitrine Public\TimeTools"
+cd "C:\Users\aurel\Documents\Dev Central Tree\03_Standalones\TimeTools"
 .\Build.cmd
 ```
 
