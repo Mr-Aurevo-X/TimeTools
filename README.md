@@ -11,7 +11,6 @@ Unified time suite: Unix timestamps, stopwatch, timers and Pomodoro — 100% loc
 
 Fusion de **EpochClock** + **StopwatchPlus** en une seule app Windows.
 
-
 ## Capture d'écran / Screenshot
 
 ![TimeTools](docs/screenshots/ui.png)
@@ -80,10 +79,10 @@ Python · pywebview · PyInstaller · PC Command kit
 
 Coups de pouce volontaires · optional tips (app remains free) :
 
-[![PayPal](https://img.shields.io/badge/PayPal-Donate-39ff14?style=for-the-badge&logo=paypal&logoColor=00f0ff&labelColor=050807)](https://www.paypal.com/paypalme/aurevo1)
-[![Revolut](https://img.shields.io/badge/Revolut-mr__aurevo__x-00f0ff?style=for-the-badge&logo=revolut&logoColor=39ff14&labelColor=050807)](https://revolut.me/mr_aurevo_x)
+[![Crypto](https://img.shields.io/badge/Crypto-dons_·_tips-f7931a?style=for-the-badge&logo=bitcoin&logoColor=050807&labelColor=050807)](https://github.com/Mr-Aurevo-X#user-content-support)
+
 ---
 
 Rêvée par **Mr-Aurevo-X**. Cursor a réalisé le rêve.
 
-[Discord](https://discord.com/users/406891052516114442) · [PayPal](https://www.paypal.com/paypalme/aurevo1) · [Revolut](https://revolut.me/mr_aurevo_x)
+[Discord](https://discord.com/users/406891052516114442) · [Crypto tips](https://github.com/Mr-Aurevo-X#user-content-support)
